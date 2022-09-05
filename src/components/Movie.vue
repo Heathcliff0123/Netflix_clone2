@@ -1,15 +1,13 @@
 <template>
-  <div>
-    <h1>World</h1>
-    {{ this.name }}
-    <p>
-      <picture>
-        <source
-          srcset="netflix_clone\src\assets\logo.jpeg"
-          media="min-width: 500px"
-        />
-      </picture>
-    </p>
+  <div class="card">
+    <img
+      :src="setImg(this.thumbnail)"
+      class="card-img-top"
+      v-bind:alt="this.name"
+    />
+    <div class="card-body">
+      <h5 class="card-title">{{ this.name }}</h5>
+    </div>
   </div>
 </template>
 
@@ -19,15 +17,20 @@ export default {
   data() {
     return {
       id: "",
-      name: "World",
+      name: "",
       genre: "",
       comingSoon: false,
       availDate: new Date(),
-      thumbnail: "netflix_clone\src\assets\logo.jpeg",
+      thumbnail: "",
+      //source: spiderman,
       preview: "",
     };
   },
   methods: {
+    setImg(thumbnail) {
+      var img = require.context("./assets/", false, /\.jpeg$/);
+      return img("./" + thumbnail + ".jpeg");
+    },
     getId() {
       return id;
     },
