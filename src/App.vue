@@ -1,10 +1,21 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  <div>
+    <router-view />
+  </div>
 </template>
+
+<script>
+import Login from "./components/Login.vue";
+export default {
+  name: "App",
+  components: { Login },
+  data() {
+    return {
+      title: "My first vue App",
+    };
+  },
+};
+</script>
 
 <style>
 #app {
