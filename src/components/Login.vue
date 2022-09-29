@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <div class="body">
     <form @submit.prevent="submit">
-      <label>Email</label>
-      <input v-model="email" type="text" required />
+      <label>Ussername</label>
+      <input v-model="ussername" type="text" required />
 
       <label>Password</label>
       <input v-model="password" type="text" required />
@@ -10,21 +10,21 @@
         <button>Submit</button>
       </div>
     </form>
-
-    <p>{{ email }}</p>
-    <p>{{ password }}</p>
   </div>
 </template>
 
 <script>
 export default {
   data() {
-    return { email: "", password: "" };
+    return { ussername: "", password: "" };
   },
   methods: {
     submit() {
-      if (this.email === "1") {
+      if (this.ussername === "1") {
         if (this.password === "1") {
+          localStorage.setItem("0", this.ussername);
+          this.ussername = "";
+          this.password = "";
           this.$router.push("/Landing");
         }
       }
@@ -37,7 +37,7 @@ export default {
 form {
   max-width: 420px;
   margin: 30px auto;
-  background: white;
+  background: black;
   text-align: left;
   padding: 40px;
   border-radius: 10px;
@@ -62,7 +62,7 @@ select {
   color: #555;
 }
 button {
-  background: #0b6dff;
+  background: red;
   border: 0;
   padding: 10px 20px;
   margin-top: 20px;
@@ -71,5 +71,8 @@ button {
 }
 .submit {
   text-align: center;
+}
+.body {
+  background-color: black;
 }
 </style>

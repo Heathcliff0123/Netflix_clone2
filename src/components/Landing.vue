@@ -1,22 +1,23 @@
 <template>
-  <div>
+  <div class="landing">
     <div class="container-fluid">
       <nav class="navbar navbar-expand-lg bg-dark">
         <div class="container-fluid">
-          <button @click="showMovielist">Movie List</button>
-          <button @click="showWatchlist">Watch List</button>
+          <button id="button" @click="logout">Log Out</button>
+          <button id="button" @click="showMovielist">Movie List</button>
+          <button id="button" @click="showWatchlist">Watch List</button>
         </div>
       </nav>
     </div>
 
     <h1>Netflix</h1>
     <div>
-      <button @click="createCarousel">
+      <button id="button" @click="createCarousel">
         <span v-if="!this.carouselV">show carousel</span>
         <span v-if="this.carouselV">hide carousel</span>
       </button>
     </div>
-
+    <p>Carousel</p>
     <carousel v-if="this.carouselV" :items-to-show="1.5">
       <slide v-for="slide in carouselSlides" :key="slide">
         <div class="carousel__item"><img :src="slide" /></div>
@@ -53,8 +54,9 @@ export default {
     }
 
     let today = new Date();
-    Object.keys(localStorage).forEach((index) => {
-      let object = JSON.parse(localStorage.getItem(index));
+    for (let f = 1; f <= 20; f++) {
+      let object = JSON.parse(localStorage.getItem(f));
+      console.log(object);
       let date = new Date(object.availDate);
       if (today.getFullYear() >= date.getFullYear()) {
         if (today.getMonth() >= date.getMonth()) {
@@ -70,16 +72,16 @@ export default {
         object.comingSoon = true;
       }
 
-      localStorage.setItem(index, JSON.stringify(object));
-    });
+      localStorage.setItem(f, JSON.stringify(object));
+    }
 
-    Object.keys(localStorage).forEach((index) => {
-      let object = JSON.parse(localStorage.getItem(index));
+    for (let f = 1; f <= 20; f++) {
+      let object = JSON.parse(localStorage.getItem(f));
       console.log(object.comingSoon);
       if (object.comingSoon) {
         this.carouselSlides.push(this.setImg(object.thumbnail));
       }
-    });
+    }
 
     //localStorage.clear();
   },
@@ -89,7 +91,7 @@ export default {
     return {
       n: 1,
       watchlist: false,
-      movielist: true,
+      movielist: false,
       carouselSlides: [],
       carouselV: false,
       movies: [
@@ -306,11 +308,20 @@ export default {
     Navigation,
   },
   methods: {
+    logout() {
+      console.log("logout");
+      localStorage.setItem("0", "");
+      this.$router.push("/");
+    },
     showWatchlist() {
-      (this.watchlist = true), (this.movielist = false);
+      console.log("watchlist"),
+        (this.watchlist = !this.watchlist),
+        (this.movielist = false);
+      console.log(this.watchlist);
     },
     showMovielist() {
-      (this.watchlist = false), (this.movielist = true);
+      console.log("movielist");
+      (this.watchlist = false), (this.movielist = !this.movielist);
     },
     setImg(thumbnail) {
       var img = require.context("./assets/", false, /\.jpeg$/);
@@ -326,4 +337,12 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.landing {
+  background-color: black;
+}
+
+#button {
+  background-color: red;
+}
+</style>

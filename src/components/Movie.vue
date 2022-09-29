@@ -1,7 +1,8 @@
 <template>
-  <div
+  <v-card
+    flat
     v-if="(this.watchlist || this.watch) && !this.comingSoon"
-    class="card mb-3"
+    class=""
   >
     <img
       :src="setImg(this.thumbnail)"
@@ -13,12 +14,12 @@
       <h5 class="card-title">{{ this.name }}</h5>
     </div>
     <div>
-      <button @click="changeWatchlist">
+      <button id="mButton" @click="changeWatchlist">
         <span v-if="this.watchlist">Remove from Watchlist</span>
         <span v-else>Add to watchlist</span>
       </button>
     </div>
-  </div>
+  </v-card>
 </template>
 
 <script>
@@ -113,8 +114,13 @@ export default {
 <style>
 .card {
   width: 18rem;
-  background-color: aqua;
+  background-color: red;
   padding: 2;
   margin: 2;
+  align-self: center center;
+}
+
+#mButton {
+  background-color: red;
 }
 </style>

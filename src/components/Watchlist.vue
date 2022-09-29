@@ -1,29 +1,17 @@
 <template>
-  <div class="container">
+  <v-container>
     <h1>Watchlist</h1>
-    <div class="card-group" style="item-padding: 5rem; item-align: center">
-      <Movie :cont="1" :watch="false" />
-      <Movie :cont="2" :watch="false" />
-      <Movie :cont="3" :watch="false" />
-      <Movie :cont="4" :watch="false" />
-      <Movie :cont="5" :watch="false" />
-      <Movie :cont="6" :watch="false" />
-      <Movie :cont="7" :watch="false" />
-      <Movie :cont="8" :watch="false" />
-      <Movie :cont="9" :watch="false" />
-      <Movie :cont="10" :watch="false" />
-      <Movie :cont="12" :watch="false" />
-      <Movie :cont="11" :watch="false" />
-      <Movie :cont="13" :watch="false" />
-      <Movie :cont="14" :watch="false" />
-      <Movie :cont="15" :watch="false" />
-      <Movie :cont="16" :watch="false" />
-      <Movie :cont="17" :watch="false" />
-      <Movie :cont="18" :watch="false" />
-      <Movie :cont="19" :watch="false" />
-      <Movie :cont="20" :watch="false" />
-    </div>
-  </div>
+    <v-layout
+      row
+      wrap
+      class="card-group"
+      style="justify-content-centre item-padding: 5rem; self-align: center"
+    >
+      <v-flex xs12 sm6 md4 lg3 v-for="n in 20" :key="n"
+        ><Movie :cont="n" :watch="false"
+      /></v-flex>
+    </v-layout>
+  </v-container>
 </template>
 
 <script>
@@ -33,6 +21,7 @@ export default {
   data() {
     return {
       movies: "",
+      n: 1,
     };
   },
   components: {
@@ -47,4 +36,10 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.card-group {
+  item-padding: 5rem;
+  item-align: center;
+  display: inline;
+}
+</style>

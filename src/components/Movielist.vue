@@ -1,29 +1,17 @@
 <template>
-  <div class="container">
-    <h1>Watchlist</h1>
-    <div class="card-group" style="item-padding: 5rem; item-align: center">
-      <Movie :cont="1" :watch="true" />
-      <Movie :cont="2" :watch="true" />
-      <Movie :cont="3" :watch="true" />
-      <Movie :cont="4" :watch="true" />
-      <Movie :cont="5" :watch="true" />
-      <Movie :cont="6" :watch="true" />
-      <Movie :cont="7" :watch="true" />
-      <Movie :cont="8" :watch="true" />
-      <Movie :cont="9" :watch="true" />
-      <Movie :cont="10" :watch="true" />
-      <Movie :cont="12" :watch="true" />
-      <Movie :cont="11" :watch="true" />
-      <Movie :cont="13" :watch="true" />
-      <Movie :cont="14" :watch="true" />
-      <Movie :cont="15" :watch="true" />
-      <Movie :cont="16" :watch="true" />
-      <Movie :cont="17" :watch="true" />
-      <Movie :cont="18" :watch="true" />
-      <Movie :cont="19" :watch="true" />
-      <Movie :cont="20" :watch="true" />
-    </div>
-  </div>
+  <v-container>
+    <h1>Movielist</h1>
+    <v-layout
+      row
+      wrap
+      class="card-group"
+      style="justify-content-centre item-padding: 5rem; self-align: center"
+    >
+      <v-flex xs12 sm6 md4 lg3 v-for="n in 20" :key="n"
+        ><Movie :cont="n" :watch="true"
+      /></v-flex>
+    </v-layout>
+  </v-container>
 </template>
 
 <script>
