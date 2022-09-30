@@ -20,8 +20,8 @@ export default {
   },
   methods: {
     submit() {
-      if (this.ussername === "1") {
-        if (this.password === "1") {
+      if (this.ussername === "Admin") {
+        if (this.password === "Password") {
           localStorage.setItem("0", this.ussername);
           this.ussername = "";
           this.password = "";

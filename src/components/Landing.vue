@@ -13,8 +13,8 @@
     <h1>Netflix</h1>
     <div>
       <button id="button" @click="createCarousel">
-        <span v-if="!this.carouselV">show carousel</span>
-        <span v-if="this.carouselV">hide carousel</span>
+        <span v-show="!this.carouselV">show carousel</span>
+        <span v-show="this.carouselV">hide carousel</span>
       </button>
     </div>
     <p>Carousel</p>
